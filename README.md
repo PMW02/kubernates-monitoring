@@ -2,8 +2,6 @@
 
 A hands-on observability project that deploys Prometheus, Grafana, and Alertmanager into a Kind Kubernetes cluster running on an AWS EC2 Ubuntu host. The stack is installed with Helm and includes custom Prometheus alert rules.
 
-> **Project scope:** This repository documents a learning/lab environment. It is not a production-ready monitoring deployment. Confirm the environment-specific details and test results before publishing screenshots or claiming them in a resume.
-
 ## Architecture
 
 ```mermaid
