@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: demo-alerts
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+    - name: demo.rules
+      rules:
+        - alert: DemoAlwaysFiring
+          expr: vector(1)
+          for: 0m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Demo alert is firing"
+            description: "This test alert always returns a value of 1."
+        - alert: NginxDeploymentUnavailable
+          expr: kube_deployment_status_replicas_available{namespace="default",deployment="nginx"} < 1
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Nginx deployment has no available replicas"
+            description: "The nginx deployment in the default namespace has fewer than one available replica."
